@@ -1,0 +1,32 @@
+name: Auto Blog Poster
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'  # Runs daily at 8:00 AM IST (2:30 AM UTC)
+  workflow_dispatch:       # Allows manual trigger
+
+jobs:
+  post_blog:
+    runs-on: ubuntu-latest
+
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      BLOGGER_BLOG_ID: ${{ secrets.BLOGGER_BLOG_ID }}
+      OAUTH_CLIENT_ID_HARDCODED: ${{ secrets.OAUTH_CLIENT_ID_HARDCODED }}
+      OAUTH_CLIENT_SECRET_HARDCODED: ${{ secrets.OAUTH_CLIENT_SECRET_HARDCODED }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Python script
+        run: python newblog.py
