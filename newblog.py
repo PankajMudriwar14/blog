@@ -99,22 +99,88 @@ def generate_blog_title(category):
 def generate_blog_content(title, category):
     """Generates blog post content using the Gemini API."""
     print(f"Generating content for title: \"{title}\"...")
-    prompt = f"""Write a comprehensive blog post titled: "{title}"
-    Category: {category}
+    prompt = f"""
+                You are an expert blog writer creating content that is engaging, SEO-friendly, and feels written by a real human.
+                
+                Your task is to write a **top-tier blog post** with the following specifications:
+                
+                **Title**: "{title}"  
+                **Category**: {category}
+                
+                ---
+                
+                ### Structure & Style Guidelines:
+                
+                1. **Powerful Introduction**  
+                   - Start with a compelling hook (a story, stat, quote, or relatable question).  
+                   - Clearly define what the article covers and **why it matters** to the reader.  
+                   - Make the reader feel personally invited to continue.
+                
+                2. **In-Depth Content with Logical Flow**  
+                   - Use clear H2 (`##`) and H3 (`###`) Markdown headings to structure the article.  
+                   - Cover multiple **well-developed subtopics**, each offering real value.  
+                   - Keep transitions smooth and maintain a logical sequence.
+                
+                3. **Expert Insight & Unique Angle**  
+                   - Share unique insights, analogies, or lesser-known facts.  
+                   - Avoid generic language—**aim for uncommon value**.  
+                   - Whenever possible, give a fresh perspective that **sets this blog apart**.
+                
+                4. **Highly Actionable Advice**  
+                   - Provide **practical steps**, **tips**, **do’s & don’ts**, or **mistakes to avoid**.  
+                   - Use bullet points (`-`) and numbered lists for clarity.  
+                   - Ensure advice is implementable, not just theoretical.
+                
+                5. **Use of Examples & Illustrations**  
+                   - Include **real-life scenarios**, **anecdotes**, or **hypothetical examples**.  
+                   - Mention illustrative statistics or reports (e.g., “According to a 2023 survey…”) to boost credibility.  
+                   - If unsure, frame data as general observations (e.g., “Studies often show…”).
+                
+                6. **Authentic, Conversational Tone**  
+                   - Write in a **natural, friendly, and clear voice**—as if talking to a friend.  
+                   - Use “you,” rhetorical questions, or light humor when appropriate.  
+                   - Avoid overly robotic or formal language.
+                
+                7. **Strong Conclusion & Reader Engagement**  
+                   - Recap the key takeaways clearly.  
+                   - End with a **thought-provoking question**, challenge, or motivational statement.  
+                   - Include a **call to action**, such as:  
+                     - “Which idea will you try first?”  
+                     - “Share your experience in the comments.”
+                
+                8. **Bonus Elements (Highly Recommended)**  
+                   - Include a **2–3 question FAQ** at the end to address common concerns.  
+                   - Suggest **related topics** or “What to read next.”  
+                   - If the topic allows, suggest a **tool**, **template**, or **free resource**.
+                
+                ---
+                
+                ### Technical Guidelines:
+                
+                - **Word Count**: 1000–1400 words  
+                - **SEO**:  
+                  - Naturally integrate keywords related to "{title}" and "{category}".  
+                  - Use them in headings, intro, and conclusion where it fits naturally.  
+                  - Prioritize **readability** and **user experience** over keyword density.
+                
+                - **Formatting**:  
+                  - Use Markdown properly:  
+                    - `##` for main sections  
+                    - `###` for sub-sections  
+                    - `-` or `*` for bullet points  
+                    - `**` for bold  
+                  - Keep paragraphs short (2–4 lines max).  
+                  - Add white space between sections for readability.
+                
+                - **Originality & Quality**:  
+                  - The content must be **100% unique**, plagiarism-free, and **not paraphrased** from any existing article.  
+                  - It should feel like a human wrote it from scratch, with care, curiosity, and expertise.
+                
+                ---
+                
+                Write the post now, following all the above. Make it valuable enough to **rank on Google** and **earn AdSense approval**.
+                """
 
-    Requirements:
-    1.  Engaging Introduction: Hook the reader immediately, clearly stating what the post is about.
-    2.  Main Body Sections: Break down the topic into logical sections using clear H2 Markdown subheadings (e.g., `## Section Title`). Use H3 (`### Sub-Section`) for further breakdown if needed.
-    3.  Practical Advice: Include actionable tips, steps, strategies, or real-world examples directly relevant to "{title}".
-    4.  Supporting Details: Where appropriate, incorporate relevant (even if illustrative or hypothetical) statistics or data points to add credibility. Cite sources if possible, otherwise frame them as examples (e.g., "Studies often show...", "Imagine data indicating...").
-    5.  Conversational & Engaging Tone: Write in a natural, approachable style. Avoid overly academic or dry language. Use "you" and "I" (sparingly) where appropriate.
-    6.  SEO Considerations: Naturally integrate keywords related to "{title}" and "{category}" throughout the text, especially in headings and the introduction/conclusion, but prioritize readability over keyword density.
-    7.  Unique Perspective: Offer a distinct viewpoint, synthesis of information, or analysis. Go beyond simply listing facts.
-    8.  Strong Conclusion: Summarize the key takeaways. Offer a final thought, encouragement, or a relevant call to action (e.g., "What are your thoughts?", "Try implementing one tip this week").
-    9.  Word Count: Aim for approximately 800-1200 words.
-    10. Originality: Ensure the content is unique and does not directly copy from specific sources. It should be your own interpretation and writing based on the prompt.
-    11. Formatting: Use paragraphs for readability. Use Markdown bullet points (`*` or `-`) for lists. Use Markdown bold (`**bold text**`) for emphasis where appropriate. Ensure proper spacing between paragraphs and sections.
-    """
     full_response = ""
     try:
         
